@@ -1,12 +1,14 @@
 // src/controllers/orderController.ts
 import { Request, Response } from 'express';
+import orderModel, { Order } from '../models/orderModel';
 
-export const createOrder = (req: Request, res: Response) => {
-    // Logic to create order
-    res.send('Order created');
-};
-
-export const getOrder = (req: Request, res: Response) => {
-    // Logic to get order
-    res.send(`Order with ID ${req.params.id}`);
+export const getOrders = async (req: Request, res: Response) => {
+    try {
+        const orders: Order[] = await orderModel.findAll();
+        res.json(orders);
+    } catch (err) {
+        // Assert that err is an instance of Error
+        const error = err as Error; 
+        res.status(500).json({ error: error.message });
+    }
 };

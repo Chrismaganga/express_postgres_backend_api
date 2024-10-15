@@ -1,12 +1,25 @@
-// src/controllers/productController.ts
 import { Request, Response } from 'express';
+import { getAllProducts, getProductById } from '../models/productModel';
 
-export const createProduct = (req: Request, res: Response) => {
-    // Logic to create product
-    res.send('Product created');
+export const fetchAllProducts = async (req: Request, res: Response) => {
+    try {
+        const products = await getAllProducts();
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 };
 
-export const getProduct = (req: Request, res: Response) => {
-    // Logic to get product
-    res.send(`Product with ID ${req.params.id}`);
+export const fetchProductById = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    try {
+        const product = await getProductById(id);
+        if (product) {
+            res.status(200).json(product);
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 };

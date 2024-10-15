@@ -1,6 +1,24 @@
-// src/models/userModel.ts
+import pool from "../config/database";
+
+
 export interface User {
-    id: number;
+    id?: number;
     username: string;
-    password: string; // Ensure this is hashed
+    email: string;
+    password: string;
+    created_at?: Date;
+    updated_at?: Date;
 }
+
+export class UserModel {
+    create: any;
+    // Example findById method; adjust the SQL query as needed
+    async findById(id: string): Promise<User | null> {
+        const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        return result.rows.length ? result.rows[0] : null; // Return user or null if not found
+    }
+
+}
+
+export default new UserModel();
+

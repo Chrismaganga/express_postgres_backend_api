@@ -1,9 +1,10 @@
 // src/server.ts
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import userRoutes from './routes/userRoutes';
-import productRoutes from './routes/productRoutes';
 import orderRoutes from './routes/orderRoutes';
+import productRoutes from './routes/productRoutes';
+import userRoutes from './routes/userRoutes';
+
 
 const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
@@ -16,7 +17,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
+    res.send('storefront api!');
 });
 
 app.listen(3000, () => {

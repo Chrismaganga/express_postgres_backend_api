@@ -1,10 +1,9 @@
-// src/routes/productRoutes.ts
 import { Router } from 'express';
-import { createProduct, getProduct } from '../controllers/productController';
+import { fetchAllProducts, fetchProductById } from '../controllers/productController';
 
 const router = Router();
 
-router.post('/', createProduct);
-router.get('/:id', getProduct);
+router.get('/', fetchAllProducts);
+router.get('/:id', fetchProductById); 
 
 export default router;
