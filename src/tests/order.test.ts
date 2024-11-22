@@ -1,6 +1,6 @@
 // src/tests/order.test.ts
 import request from 'supertest';
-import app from '../app';
+import app from '../server';
 
 describe('Order API', () => {
     it('should create an order', async () => {

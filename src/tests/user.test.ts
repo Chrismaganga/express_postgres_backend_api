@@ -1,6 +1,6 @@
 // src/tests/user.test.ts
 import request from 'supertest';
-import app from '../app';
+import app from '../server';
 
 describe('User API', () => {
     it('should create a user', async () => {

@@ -1,6 +1,5 @@
 import pool from "../config/database";
 
-
 export interface User {
     id?: number;
     username: string;

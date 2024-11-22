@@ -1,6 +1,6 @@
 // src/tests/product.test.ts
 import request from 'supertest';
-import app from '../app';
+import app from '../server';
 
 describe('Product API', () => {
     it('should create a product', async () => {

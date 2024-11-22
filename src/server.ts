@@ -17,9 +17,11 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
 app.get('/', (req: Request, res: Response) => {
+    
     res.send('storefront api!');
 });
 
 app.listen(3000, () => {
     console.log(`starting app on: ${address}`);
 });
+export default app;
