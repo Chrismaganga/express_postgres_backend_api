@@ -14,9 +14,8 @@ export class UserModel {
     // Example findById method; adjust the SQL query as needed
     async findById(id: string): Promise<User | null> {
         const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-        return result.rows.length ? result.rows[0] : null; // Return user or null if not found
+        return result.rows.length ? result.rows[0] : null; 
     }
-
 }
 
 export default new UserModel();

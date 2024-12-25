@@ -1,4 +1,3 @@
-// src/config/database.ts
 import { Connection, Pool } from 'pg';
 import dotenv from 'dotenv';
 

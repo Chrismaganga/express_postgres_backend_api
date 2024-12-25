@@ -1,27 +1,35 @@
-// src/server.ts
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import orderRoutes from './routes/orderRoutes';
+// import orderRoutes from './routes/orderRoutes';
 import productRoutes from './routes/productRoutes';
+import pool from './config/database';
 import userRoutes from './routes/userRoutes';
+import orderRoutes from './routes/orderRoutes';
+
+const app = express();
 
 
-const app: express.Application = express();
-const address: string = "0.0.0.0:3000";
-
+const port =  process.env.PORT || 3000;
 app.use(bodyParser.json());
+// app.use(cors());
+app.use(express.json());
 
-// Define routes
-app.use('/api/users', userRoutes);
+
+(async () => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    console.log('Database connected:', result.rows[0]);
+  } catch (err) {
+    console.error('Error connecting to the database', err);
+  }
+})();
+
+
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 
-app.get('/', (req: Request, res: Response) => {
-    
-    res.send('storefront api!');
-});
-
-app.listen(3000, () => {
-    console.log(`starting app on: ${address}`);
+app.listen(port, () => {
+    console.log(`starting app on: ${port}`);
 });
 export default app;
