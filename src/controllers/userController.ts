@@ -35,7 +35,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const userData: User = req.body; 
 
     try {
-        const user: User | null = await deleteUser(id, userData, { new: true }) ?? null;
+        const user: User | null = await userModel.findByIdAndUpdate(id, userData, { new: true }) ?? null;
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -46,10 +46,10 @@ export const updateUser = async (req: Request, res: Response) => {
     }
 }
 export const deleteUser = async (req: Request, res: Response) => {
-    const id: string = req.params.id; 
+    const id: string = req.params.id;
 
     try {
-        const user: User | null = await userModel?.findByIdAndDelete(id);
+        const user: User | null = await userModel?.findByIdAndRemove(id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

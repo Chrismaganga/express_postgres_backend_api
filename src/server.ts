@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-// import orderRoutes from './routes/orderRoutes';
+import cors from 'cors';
 import productRoutes from './routes/productRoutes';
 import pool from './config/database';
 import userRoutes from './routes/userRoutes';
@@ -11,7 +11,8 @@ const app = express();
 
 const port =  process.env.PORT || 3000;
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
+app.options('*', cors())
 app.use(express.json());
 
 
@@ -33,3 +34,4 @@ app.listen(port, () => {
     console.log(`starting app on: ${port}`);
 });
 export default app;
+

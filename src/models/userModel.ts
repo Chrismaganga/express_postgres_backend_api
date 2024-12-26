@@ -10,6 +10,12 @@ export interface User {
 }
 
 export class UserModel {
+    findByIdAndUpdate(id: string, userData: User, arg2: { new: boolean; }): User | PromiseLike<User | null> | null {
+        throw new Error('Method not implemented.');
+    }
+    findByIdAndRemove(id: string): User | PromiseLike<User | null> | null {
+        throw new Error('Method not implemented.');
+    }
     create: any;
     // Example findById method; adjust the SQL query as needed
     async findById(id: string): Promise<User | null> {
