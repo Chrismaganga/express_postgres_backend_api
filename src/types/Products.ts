@@ -11,9 +11,6 @@ export interface Products {
   image_url?: string | null; 
 }
 
-export default CustomRequest {
- 
-}
 export interface CustomRequest extends Request {
   file?: {
     filename: string;
